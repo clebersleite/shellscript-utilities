@@ -1,4 +1,8 @@
 #!/bin/bash
+##
+## Autor: Cleber S Leite
+##
+
 ## List Devices
 devices=( $( ls /sys/block/ -p1 | grep sd) )
 lista=""
