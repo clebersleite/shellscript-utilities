@@ -32,11 +32,12 @@ done
  ## Remove last char to do not a blank option
  dispositivos=$(sed 's/.\{1\}$//' <<< "$dispositivos")
 
- comando=$( yad --width=500 --height=100 --center \
+ comando=$( yad  --height=100 --center \
+ --image=drive-removable-media \
  --button="gtk-ok:0"  \
  --button="gtk-refresh:1" \
  --title "Dispositivos Removíveis" \
- --text="\n Selecione o dispositivo: \n" --text-align=center \
+ --text="Selecione o dispositivo:" --text-align=center \
  --form --field="":CB "$dispositivos" "/dev/sdb!/dev/sdc" )
 
  foo=$?
