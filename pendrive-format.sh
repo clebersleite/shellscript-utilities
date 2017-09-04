@@ -1,9 +1,11 @@
 #!/bin/bash
 echo " "
-echo "List Removable Devices - Mass Storage"
+echo "Lista de discos removiveis"
 echo "--------------------------"
 echo " "
 devices=( $( ls /sys/block/ -p1 | grep sd) )
+
+dispositivos=""
 
 for i in "${devices[@]}"
 do
@@ -13,9 +15,11 @@ do
         size=$( echo "$((512* $(cat /sys//block/$i/size)/1024/1024/1024))" )
 
         removivel=$( cat $path )
-        if [ $removivel == 1 ]; then
-                echo "$vendor - $model ( $size GB)"
-        fi
 
+        if [ $removivel == 1 ]; then
+                dispositivos+="$vendor - $model ( $size GB)!"
+        fi
 done
+
+        yad --width=500 --height=100 --center --button="gtk-ok:0" --title "Dispositivos Removíveis" --text="\n Selecione o dispositivo: \n" --text-align=center --form $
 echo " "
